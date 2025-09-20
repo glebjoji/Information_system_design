@@ -214,7 +214,50 @@ def __repr__(self):
 8. Создать класс, содержащий краткую версию данных исходного класса (например Фамилия Инициалы, только один контакт, ИНН ОГРН без адреса, без контактных лиц и тд).
 
 ```
+# Часть: Краткая версия данных
+class StudentSummary:
+    def __init__(self, last_name, first_name, middle_name):
+        self._last_name = last_name
+        self._first_name = first_name
+        self._middle_name = middle_name
+    
+    @property
+    def last_name(self):
+        return self._last_name
+    
+    @property
+    def first_name(self):
+        return self._first_name
 
+    @property
+    def middle_name(self):
+        return self._middle_name
+    
+    def get_initials(self):
+        """Возвращает инициалы ФИО."""
+        return f"{self._first_name[0]}.{self._middle_name[0]}."
+
+# Целое: Полная версия данных, содержащая краткую
+class Student:
+    def __init__(self, student_id, last_name, first_name, middle_name, address, phone_string):
+        # Композиция: Создаем объект StudentSummary внутри Student
+        self._summary = StudentSummary(last_name, first_name, middle_name)
+        
+        self._student_id = student_id
+        self._address = address
+        self._phone = phonenumbers.parse(phone_string, "RU")
+
+    @property
+    def last_name(self):
+        return self._summary.last_name
+    
+    @property
+    def first_name(self):
+        return self._summary.first_name
+        
+    def __str__(self):
+        """Краткая версия через композицию."""
+        return f"{self._summary.last_name} {self._summary.get_initials()}"
 ```
 9. Собрать два класса в одну иерархию наследования, обеспечить ОТСУТСТВИЕ повтора кода.
 
