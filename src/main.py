@@ -1,2 +1,2 @@
 print('hello repo')
-print
+print('hello repo from console')
