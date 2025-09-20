@@ -195,8 +195,27 @@ class Student:
 
 7. Обеспечить вывод на экран полной версии объекта и краткой версии объекта. Обеспечить сравнение объектов на равенство.
 
+```
+def __repr__(self):
+        return (f"Student(student_id={self._student_id}, last_name='{self.last_name}', "
+                f"first_name='{self.first_name}', middle_name='{self.middle_name}', "
+                f"address='{self._address}', phone='{self.phone}')")
+
+    def __str__(self):
+        initials = f"{self.first_name[0]}.{self.middle_name[0]}."
+        return f"{self.last_name} {initials}"
+
+    def __eq__(self, other):
+        if not isinstance(other, Student):
+            return NotImplemented
+        return self._student_id == other._student_id and self._phone == other._phone
+```
+
 8. Создать класс, содержащий краткую версию данных исходного класса (например Фамилия Инициалы, только один контакт, ИНН ОГРН без адреса, без контактных лиц и тд).
 
+```
+
+```
 9. Собрать два класса в одну иерархию наследования, обеспечить ОТСУТСТВИЕ повтора кода.
 
 10. Нарисовать полную диаграмму классов. - БЕЗ диаграммы классов работа не принимается.
