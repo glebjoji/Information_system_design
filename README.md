@@ -98,6 +98,49 @@ class Student:
             raise ValueError("ID студента должен быть положительным целым числом.")
 
     @staticmethod
+    def _validate_last_name(last_name):
+        if not isinstance(last_name, str) or not last_name.isalpha() or not last_name.istitle():
+            raise ValueError("Фамилия должна быть непустой строкой, состоящей только из букв, и начинаться с заглавной буквы.")
+
+    @staticmethod
+    def _validate_first_name(first_name):
+        if not isinstance(first_name, str) or not first_name.isalpha() or not first_name.istitle():
+            raise ValueError("Имя должно быть непустой строкой, состоящей только из букв, и начинаться с заглавной буквы.")
+
+    @staticmethod
+    def _validate_middle_name(middle_name):
+        if not isinstance(middle_name, str) or not middle_name.isalpha() or not middle_name.istitle():
+            raise ValueError("Отчество должно быть непустой строкой, состоящей только из букв, и начинаться с заглавной буквы.")
+
+    @staticmethod
+    def _validate_address(address):
+        if not isinstance(address, str) or not address.strip():
+            raise ValueError("Адрес должен быть непустой строкой.")
+
+    @staticmethod
+    def _validate_phone(phone_string):
+        try:
+            parsed_phone = phonenumbers.parse(phone_string, "RU")
+
+            # is_valid_number_for_region проверяет корректность номера и его длину для России.
+
+            if not phonenumbers.is_valid_number_for_region(parsed_phone, "RU"):
+                raise ValueError("Некорректный номер телефона для Российского региона.")
+            return parsed_phone
+        except phonenumbers.NumberParseException:
+            raise ValueError("Ошибка при разборе номера телефона. Проверьте формат.")
+```
+
+5. Убрать повтор кода из пункта 4.
+
+```
+class Student:
+    @staticmethod
+    def _validate_id(student_id):
+        if not isinstance(student_id, int) or student_id <= 0:
+            raise ValueError("ID студента должен быть положительным целым числом.")
+
+    @staticmethod
     def _validate_name(name, field_name):
         if not isinstance(name, str) or not name.isalpha() or not name.istitle():
             raise ValueError(f"{field_name} должен быть непустой строкой, состоящей только из букв, и начинаться с заглавной буквы.")
@@ -120,8 +163,6 @@ class Student:
         except phonenumbers.NumberParseException:
             raise ValueError("Ошибка при разборе номера телефона. Проверьте формат.")
 ```
-
-5. Убрать повтор кода из пункта 4.
 
 6. Обеспечить перегрузку конcтруктора для нетривиальных примеров (строка, JSON и тд).
 
