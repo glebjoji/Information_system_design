@@ -165,6 +165,33 @@ class Student:
 ```
 
 6. Обеспечить перегрузку конcтруктора для нетривиальных примеров (строка, JSON и тд).
+```
+@classmethod
+    def from_string(cls, data_string):
+        parts = data_string.split(',')
+        if len(parts) != 6:
+            raise ValueError("Неверный формат строки. Ожидается 6 полей.")
+        
+        student_id, last_name, first_name, middle_name, address, phone_string = parts
+        
+        # Вызываем основной конструктор, передавая преобразованные данные
+        return cls(int(student_id), last_name, first_name, middle_name, address, phone_string)
+
+    @classmethod
+    def from_json(cls, json_data):
+        if not isinstance(json_data, dict):
+            raise TypeError("Ожидается словарь JSON.")
+            
+        # Получаем данные из словаря и вызываем основной конструктор
+        return cls(
+            json_data.get('student_id'),
+            json_data.get('last_name'),
+            json_data.get('first_name'),
+            json_data.get('middle_name'),
+            json_data.get('address'),
+            json_data.get('phone')
+        )
+```
 
 7. Обеспечить вывод на экран полной версии объекта и краткой версии объекта. Обеспечить сравнение объектов на равенство.
 
