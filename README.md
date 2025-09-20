@@ -324,5 +324,4 @@ class Student(StudentSummary):
 ```
 10. Нарисовать полную диаграмму классов. - БЕЗ диаграммы классов работа не принимается.
    ![Untitled diagram _ Mermaid Chart-2025-09-20-190934](https://github.com/user-attachments/assets/5b344fa2-bf2d-464b-a0a4-3eaf27ed490f)
-<svg id="export-svg" width="100%" xmlns="http://www.w3.org/2000/svg" class="classDiagram" style="max-width: 398.9624938964844px;" viewBox="0 0 398.9624938964844 630" role="graphics-document document" aria-roledescription="class"><style xmlns="http://www.w3.org/1999/xhtml">/* Google Inc.
-
+<svg id="export-svg" width="100%" xmlns="http://www.w3.org/2000/svg" class="classDiagram" style="max-width: 398.9624938964844px;" viewBox="0 0 398.9624938964844 630" role="graphics-document document" aria-roledescription="class">
